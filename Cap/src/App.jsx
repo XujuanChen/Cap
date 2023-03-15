@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import APIForm from './components/APIform';
 import Gallery from './components/gallery';
+const ACCESS_KEY = import.meta.env.VITE_APP_ACCESS_KEY;
 
 function App() {
   const [inputs, setInputs] = useState({
@@ -12,13 +13,11 @@ function App() {
     width: "",
     height: "",
   });
-  const ACCESS_KEY = import.meta.env.VITE_APP_ACCESS_KEY;
+
 const [currentImage, setCurrentImage] = useState(null);
 const [prevImages, setPrevImages] = useState([]);
 
-
 const callAPI = async (query) => {
-    
   const response = await fetch(query);
   const json = await response.json();
   if (json.url == null){
@@ -28,7 +27,6 @@ const callAPI = async (query) => {
         setPrevImages((images) => [...images, json.url]);
         reset();
       }
-
 }
 
 const reset = () => {
@@ -74,8 +72,6 @@ const submitForm = () => {
   }
 }
 
-
-
   return (
     <div className="whole-page">
       <h1>Build Your Own Screenshot! 📸</h1>
@@ -119,7 +115,6 @@ const submitForm = () => {
     <br></br>
   </p>
 </div>
-
 
 )}
 
